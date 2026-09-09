@@ -32,7 +32,12 @@
                         <td th:text="${carro.id}"></td>
                         <td th:text="${carro.placa}"></td>
                     </tr>
-        
+                    
+                    <tr th:each="carroDB : ${carrosDB}">
+                        <td th:text="${carroDB.id}"></td>
+                        <td th:text="${carroDB.placa}"></td>
+                    </tr>
+                    
                 </tbody>
             </table>
         </div>

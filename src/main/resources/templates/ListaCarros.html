@@ -23,19 +23,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>0</td>
-                        <td>HSC-3456</td>
-                    </tr>
-
+                    
                     <tr th:each="carro : ${carros}">
                         <td th:text="${carro.id}"></td>
                         <td th:text="${carro.placa}"></td>
-                    </tr>
-                    
-                    <tr th:each="carroDB : ${carrosDB}">
-                        <td th:text="${carroDB.id}"></td>
-                        <td th:text="${carroDB.placa}"></td>
                     </tr>
                     
                 </tbody>

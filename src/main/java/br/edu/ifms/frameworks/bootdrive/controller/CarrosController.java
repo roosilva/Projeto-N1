@@ -9,24 +9,26 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.edu.ifms.frameworks.bootdrive.model.Carro;
-import br.edu.ifms.frameworks.bootdrive.repository.Carros;
+import br.edu.ifms.frameworks.bootdrive.service.CarroService;
 
 @Controller
 public class CarrosController {
 
     @Autowired
-    private Carros carros;
+    private CarroService carroService;
     
     @GetMapping("/carros")
     public ModelAndView listarCarros() {
         ModelAndView modelAndView = new ModelAndView("ListaCarros");
-        modelAndView.addObject("carros", buscarCarros());
         
-        modelAndView.addObject("carrosDB", carros.findAll());
+        //modelAndView.addObject("carros", buscarCarros());
+        
+        modelAndView.addObject("carros", carroService.buscarTodos());
         
         return modelAndView;
     }
 
+    /*
     public List<Carro> buscarCarros() {
         List<Carro> carros = new ArrayList<Carro>();
         Carro c1 = new Carro();
@@ -43,8 +45,6 @@ public class CarrosController {
         carros.add(c3);
         return carros;
     }
-
-
-    
+     */ 
 
 }

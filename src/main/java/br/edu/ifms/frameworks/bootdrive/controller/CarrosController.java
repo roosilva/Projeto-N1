@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -36,6 +37,19 @@ public class CarrosController {
         return "redirect:/carros";
     }
 
+    @GetMapping("/carro/{id}")
+    public ModelAndView editar(@PathVariable("id") Long id) {
+        ModelAndView modelAndView = new ModelAndView("EditaCarro");
+        modelAndView.addObject(carroService.procurar(id));
+        return modelAndView;
+    }
+
+    @GetMapping("/carro/deletar/{id}")
+    public String deletar(@PathVariable("id") Long id) {
+        carroService.deletar(id);
+        return "redirect:/carros";
+    }
+    
     /*
      * public List<Carro> buscarCarros() {
      * List<Carro> carros = new ArrayList<Carro>();

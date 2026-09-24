@@ -15,17 +15,15 @@
         </div>
         <div class="card-body">
 
-            <form method="POST" th:object="${carro}" th:action="@{/carros}" 
-                style="margin: 20px 0">
+            <form method="POST" th:object="${carro}" th:action="@{/carros}" style="margin: 20px 0">
 
                 <div class="d-flex align-items-center gap-2">
-                    <input type="text" class="form-control" placeholder="Placa" 
-                        th:field="*{placa}"
+                    <input type="text" class="form-control" placeholder="Placa" th:field="*{placa}"
                         style="max-width: 200px;" />
 
                     <button type="submit" class="btn btn-primary">Salvar</button>
                 </div>
-                
+
             </form>
 
             <table class="table">
@@ -33,6 +31,8 @@
                     <tr>
                         <th>#</th>
                         <th>Placa</th>
+                        <th>EDITAR</th>
+                        <th>DELETAR</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -40,6 +40,15 @@
                     <tr th:each="carro : ${carros}">
                         <td th:text="${carro.id}"></td>
                         <td th:text="${carro.placa}"></td>
+
+                        <td> <a class="btn btn-primary" th:href="@{/carro/{id}(id=${carro.id})}">
+                                Editar
+                            </a>
+                        </td>
+                        <td> <a class="btn btn-danger" th:href="@{/carro/deletar/{id}(id=${carro.id})}">
+                                Excluir
+                            </a>
+                        </td>
                     </tr>
 
                 </tbody>

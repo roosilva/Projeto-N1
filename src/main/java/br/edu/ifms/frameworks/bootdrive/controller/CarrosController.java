@@ -19,6 +19,11 @@ public class CarrosController {
     @Autowired
     private CarroService carroService;
 
+    @GetMapping("/")
+    public String principal() {
+        return "redirect:/carros";
+    }
+
     @GetMapping("/carros")
     public ModelAndView listarCarros() {
         ModelAndView modelAndView = new ModelAndView("ListaCarros");

@@ -1,0 +1,64 @@
+
+package br.edu.ifms.frameworks.bootdrive.model;
+
+import java.io.Serializable;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+
+@Entity
+public class Multa implements Serializable {
+
+    @Id
+    @GeneratedValue
+    private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "carro_id")
+    private Carro carro;
+
+    private String ano;
+    private String cidade;
+
+    @ManyToOne
+    @JoinColumn(name = "infracao_id")
+    private Infracao infracao;
+
+    public Long getId() {
+        return id;
+    }
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Carro getCarro() {
+        return carro;
+    }
+    public void setCarro(Carro carro) {
+        this.carro = carro;
+    }
+
+    public String getAno() {
+        return ano;
+    }
+    public void setAno(String ano) {
+        this.ano = ano;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
+    public Infracao getInfracao() {
+        return infracao;
+    }
+    public void setInfracao(Infracao infracao) {
+        this.infracao = infracao;
+    }
+}

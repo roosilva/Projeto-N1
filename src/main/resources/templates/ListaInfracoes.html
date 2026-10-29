@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Lista de Infrações</title>
+    <link th:href="@{/webjars/bootstrap/5.3.8/css/bootstrap.min.css}" rel="stylesheet" />
+</head>
+
+<body>
+
+    <div th:insert="~{Menu :: menu}"></div>
+
+    <div class="card" style="margin: 10px">
+        <div class="card-header">
+            <h1 class="card-title">Lista de Infrações Cadastradas - Roosevelt Silva</h1>
+        </div>
+        <div class="card-body">
+
+            <form method="POST" th:object="${infracao}" th:action="@{/infracoes}" style="margin: 20px 0">
+
+                <div class="d-flex align-items-center gap-2">
+                    <input type="text" class="form-control" placeholder="Descrição" th:field="*{descricao}"
+                        style="max-width: 300px;" />
+
+                    <input type="number" class="form-control" placeholder="Pontos" th:field="*{pontos}"
+                        style="max-width: 120px;" />
+
+                    <input type="number" step="0.01" class="form-control" placeholder="Valor" th:field="*{valor}"
+                        style="max-width: 150px;" />
+
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </div>
+
+            </form>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Descrição</th>
+                        <th>Pontos</th>
+                        <th>Valor</th>
+                        <th>EDITAR</th>
+                        <th>DELETAR</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr th:each="infracao : ${infracoes}">
+                        <td th:text="${infracao.id}"></td>
+                        <td th:text="${infracao.descricao}"></td>
+                        <td th:text="${infracao.pontos}"></td>
+                        <td th:text="${infracao.valor}"></td>
+
+                        <td>
+                            <a class="btn btn-primary" th:href="@{/infracao/{id}(id=${infracao.id})}">
+                                Editar
+                            </a>
+                        </td>
+                        <td>
+                            <a class="btn btn-danger" th:href="@{/infracao/deletar/{id}(id=${infracao.id})}">
+                                Excluir
+                            </a>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>
